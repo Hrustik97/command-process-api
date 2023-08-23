@@ -32,13 +32,13 @@ public class BooleanArgument extends Argument {
             this.value = value;
         } else {
             throw new CommandProcessAPIException(String.format(
-                "The value '%s' doesn't match any of the permitted values: [%s]", value, this.helpMessageRepresentation()
+                "The value '%s' doesn't match any of the permitted values: [%s]", value, this.toHelpMessageRepresentation()
             ));
         }
     }
 
     @Override
-    public String helpMessageRepresentation() {
+    public String toHelpMessageRepresentation() {
         return String.format("%s | %s", this.trueValue, this.falseValue);
     }
 

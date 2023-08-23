@@ -51,7 +51,7 @@ public class IntegerArgument extends Argument {
     }
 
     @Override
-    public String helpMessageRepresentation() {
+    public String toHelpMessageRepresentation() {
         return "int";
     }
 

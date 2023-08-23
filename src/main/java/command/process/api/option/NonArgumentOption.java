@@ -18,6 +18,7 @@ public class NonArgumentOption extends Option {
         this.active = false;
     }
 
+    @Override
     public Boolean isActive() {
         return this.active;
     }
@@ -33,7 +34,7 @@ public class NonArgumentOption extends Option {
     }
 
     @Override
-    public String helpMessageRepresentation() {
+    public String toHelpMessageRepresentation() {
         StringBuilder sb = new StringBuilder();
         for (String alias : this.aliases) {
             sb.append(alias).append(" ");

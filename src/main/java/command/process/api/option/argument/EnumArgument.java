@@ -34,12 +34,12 @@ public class EnumArgument extends Argument {
             }
         }
         throw new CommandProcessAPIException(String.format(
-            "The value '%s' doesn't match any of the permitted values: [%s]", value, this.helpMessageRepresentation()
+            "The value '%s' doesn't match any of the permitted values: [%s]", value, this.toHelpMessageRepresentation()
         ));
     }
 
     @Override
-    public String helpMessageRepresentation() {
+    public String toHelpMessageRepresentation() {
         return String.join(" | ", Arrays.stream(this.enumClass.getEnumConstants()).map(Object::toString).toArray(String[]::new));
     }
 

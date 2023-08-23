@@ -43,11 +43,11 @@ public class ArgumentOption extends Option {
     }
 
     public String argumentHelpMessageRepresentation() {
-        return this.argument.helpMessageRepresentation();
+        return this.argument.toHelpMessageRepresentation();
     }
 
     @Override
-    public String helpMessageRepresentation() {
+    public String toHelpMessageRepresentation() {
         StringBuilder sb = new StringBuilder();
         for (String alias : this.aliases) {
             sb.append(alias).append(" ");
@@ -57,7 +57,7 @@ public class ArgumentOption extends Option {
         if (this.isMandatory()) {
             sb.append("Mandatory)");
         } else {
-            sb.append("Optional, default value = '").append(this.argument.defaultValueAsString()).append("')");
+            sb.append("Optional, default value = '").append(this.argument.getDefaultValueAsString()).append("')");
         }
         return sb.toString();
     }

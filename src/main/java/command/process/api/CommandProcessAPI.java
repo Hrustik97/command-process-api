@@ -29,10 +29,17 @@ public class CommandProcessAPI {
         this.addNonArgumentOption(new String[]{"-h", "--help"}, "help option showing the help message");
     }
 
+    /**
+     * Parses, validates and executes the terminal command according to specified options. Deactivates all activated options afterwards to process another command.
+     *
+     * @param command terminal command
+     * @return The response of the API after the command is executed.
+     * @throws CommandProcessAPIException API error occurring during the processing of the command. Its message informs the user what went wrong.
+     */
     public String process(String command) {
         try {
             this.parse(command);
-            if (this.options.get(0).isActive()) {
+            if (this.options.get(0).isActive()) { // if the command contains the help option which overrides all other options
                 return this.getHelpMessage();
             }
             this.checkPresenceOfMandatoryOptions();
@@ -42,6 +49,12 @@ public class CommandProcessAPI {
         }
     }
 
+    /**
+     * Parses the terminal command according to specified options.
+     *
+     * @param command terminal command
+     * @throws CommandProcessAPIException API error occurring during the parsing of the command.
+     */
     private void parse(String command) {
         if (command == null) {
             throw new CommandProcessAPIException("The processed command can't be null");
@@ -68,6 +81,11 @@ public class CommandProcessAPI {
         return this.executor.getHelpMessage(this.options);
     }
 
+    /**
+     * Checks whether all mandatory options are activated (after the terminal command is parsed).
+     *
+     * @throws CommandProcessAPIException API error occurring when some mandatory options are not activated before the execution of the terminal command.
+     */
     private void checkPresenceOfMandatoryOptions() {
         for (Option option : this.options) {
             if (option.isMandatory() && !option.isActive()) {
@@ -76,6 +94,9 @@ public class CommandProcessAPI {
         }
     }
 
+    /**
+     * Deactivates all previously activated options, so that another terminal command can be processed.
+     */
     private void deactivateOptions() {
         for (Option option : this.options) {
             option.deactivate();

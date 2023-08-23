@@ -19,6 +19,12 @@ public abstract class Argument {
         this.defaultValue = defaultValue;
     }
 
+
+    /**
+     * Parses the string representation of the argument value to its real representation of the arbitrary object type which is then assigned to the class variable 'value'.
+     *
+     * @param value The argument value parsed from the terminal command.
+     */
     public abstract void assignValue(String value);
 
     public Object getValue() {
@@ -33,9 +39,9 @@ public abstract class Argument {
         this.value = null;
     }
 
-    public abstract String helpMessageRepresentation();
+    public abstract String toHelpMessageRepresentation();
 
-    public String defaultValueAsString() {
+    public String getDefaultValueAsString() {
         if (this.defaultValue != null) {
             return this.defaultValue.toString();
         }

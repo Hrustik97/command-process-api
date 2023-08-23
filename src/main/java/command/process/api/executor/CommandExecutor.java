@@ -31,11 +31,17 @@ public abstract class CommandExecutor {
         }
         sb.append("Options and arguments:\n");
         for (Option option : options) {
-            sb.append(option.helpMessageRepresentation()).append('\n');
+            sb.append(option.toHelpMessageRepresentation()).append('\n');
         }
         return sb.toString();
     }
 
+    /**
+     * Executes the terminal command using activated options which can be accessed by their aliases through the HashMap 'optionsMap'.
+     *
+     * @param optionsMap The mapping of options' aliases to given options
+     * @return The response of the API after the command is executed.
+     */
     public abstract String execute(HashMap<String, Option> optionsMap);
 
 }

@@ -51,12 +51,23 @@ public abstract class Option {
 
     public abstract void deactivate();
 
+    /**
+     * @return The boolean indicator whether the option was specified in the terminal command and activated.
+     */
     public abstract Boolean isActive();
 
+    /**
+     * @return The boolean indicator whether the option is mandatory or not. NonArgumentOption always returns false.
+     * ArgumentOption returns true only if the default value of its argument is not set.
+     */
     public abstract boolean isMandatory();
 
+    /**
+     * @return The value of the option. NonArgumentOption returns the same Boolean value as the method 'isActive'.
+     * ArgumentOption returns the value of its argument (of the arbitrary object type).
+     */
     public abstract Object getValue();
 
-    public abstract String helpMessageRepresentation();
+    public abstract String toHelpMessageRepresentation();
 
 }
