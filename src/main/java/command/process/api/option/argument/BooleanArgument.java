@@ -38,6 +38,22 @@ public class BooleanArgument extends Argument {
     }
 
     @Override
+    public Object getValue() {
+        if (this.value != null) {
+            return this.value.equals(this.trueValue);
+        }
+        return null;
+    }
+
+    @Override
+    public Object getDefaultValue() {
+        if (this.defaultValue != null) {
+            return this.defaultValue.equals(this.trueValue);
+        }
+        return null;
+    }
+
+    @Override
     public String toHelpMessageRepresentation() {
         return String.format("%s | %s", this.trueValue, this.falseValue);
     }
