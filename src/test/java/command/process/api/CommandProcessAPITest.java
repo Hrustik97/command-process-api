@@ -112,7 +112,7 @@ class CommandProcessAPITest {
 
     @Test
     void process_invalidOperatorValue_throwsException() {
-        assertThrows(CommandProcessAPIException.class, () -> cpa.process("-l -10 -r 11 -o INVALID -v"));
+        assertThrows(CommandProcessAPIException.class, () -> cpa.process("-l -10 -r 10 -o INVALID -v"));
     }
 
 }
