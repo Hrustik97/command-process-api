@@ -16,6 +16,12 @@ public class BooleanArgument extends Argument {
     public BooleanArgument(String trueValue, String falseValue, String defaultValue) {
         super(defaultValue);
         this.validateAndConstruct(trueValue, falseValue);
+        if (defaultValue != null && !defaultValue.equals(trueValue) && !defaultValue.equals(falseValue)) {
+            throw new CommandProcessAPIException(String.format(
+                "The defaultValue '%s' of the BooleanArgument doesn't match any of the permitted values: [%s]",
+                defaultValue, this.toHelpMessageRepresentation()
+            ));
+        }
     }
 
     private void validateAndConstruct(String trueValue, String falseValue) {
